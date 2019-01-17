@@ -3,8 +3,8 @@
 - Forked from basicScroll.
 - Added jQuery wrapper `hScroll`.
 - Added auto detection on `data-timing` attribute.
+- Added auto detection on `data--x` attribute.  `data--opacity="0.2 to 1"`. It will update the variable `--opacity` from 0.2 to 1.
 - Changed the format of `props` argument: Variable can be put on 1st level, no longer needed to be children of "props".
-- Added alternative way of specifying `props` arguments: Using data attribute with double dash like `data--opacity="0.2 to 1"`. It will update the variable `--opacity` from 0.2 to 1.
 
 Default value for arguments:
 

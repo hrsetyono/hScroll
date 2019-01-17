@@ -6,14 +6,19 @@ A Simple Parallax scrolling using CSS variables. Only 3.6 KB gzipped.
 
 ## Contents
 
-- [Codepen Demos](https://codepen.io/hrsetyono/pen/MZRRqe)
-- [More Demos from basicSlider](https://github.com/electerious/basicScroll#demos)
+- [Demos](#demos)
 - [Setup](#setup)
 - [Options](#options)
 - [Options in Attribute](#options-in-attribute)
 - [Animation Timing](#animation-timing)
 - [Tips](#tips)
 - [Requirements](#requirements)
+
+## Demos
+
+- [Basic Usage](https://codepen.io/hrsetyono/pen/MZRRqe)
+- [Parallax Banner](https://codepen.io/hrsetyono/pen/EGzYBr)
+- [More Demos from basicSlider](https://github.com/electerious/basicScroll#demos)
 
 
 ## Setup
@@ -25,7 +30,7 @@ A Simple Parallax scrolling using CSS variables. Only 3.6 KB gzipped.
 	<script src="js/h-scroll.min.js"></script>
 	```
 
-1. Create an element then set CSS variable for the properties that you want to animate.
+1. Create an element and set CSS variable in the property that you want to animate.
 
 	```html
 	<div class="my-elem">
@@ -75,16 +80,14 @@ Available options for hScroll are:
 
 	Possible values for both parts are: `top`, `middle`, and `bottom`.
 
-1. **direct** - Apply the variable to `<body>` or not. Default: true.
+1. **direct** - If true, apply the variable to the element directly. If false, applied to `<body>`. Default: false.
 
-	If you inspect the element of the Demo, you will see that the variable changes is applied on `<body>`. This is intentional so you can reuse that variable if needed.
-
-	If set to false, the variable changes is applied to that element only.
+	If you inspect the element of the Demo, you will see that the variable changes is applied on `<body>`. This is intentional so you can reuse that variable when needed.
 
 
 ## Options in Attribute
 
-You can specify the CSS variables and its ranging value by using data attribute with double dash `--`.
+You can specify the CSS variable by using data attribute with double dash `--`.
 
 ```html
 <div class="my-elem" data--rotate="0 to 180deg">
@@ -92,7 +95,7 @@ You can specify the CSS variables and its ranging value by using data attribute 
 </div>
 ```
 
-By doing so, you don't need to pass on the CSS variable arguments:
+By doing so, you don't need to pass on the arguments:
 
 ```js
 $('.my-elem').hScroll();
