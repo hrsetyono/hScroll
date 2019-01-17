@@ -23,44 +23,75 @@
     section:nth-child(1) { height: 200vh; }
     section:nth-child(n+2) { height: 100vh; }
 
-    .scroll-opacity {
+    .fade-in {
       opacity: var(--o);
       will-change: opacity;
-      transition: transform .1s
     }
 
-    .scroll-speed {
+    .fade-out {
+      opacity: var(--o2);
+      will-change: opacity;
+    }
+
+    .faster {
       transform: translateY( var(--ty) );
       will-change: transform;
-      transition: transform .1s
     }
 
-    .scroll-rotate {
-      transform: rotate( var(--r) );
+    .slower {
+      transform: translateY( var(--ty2) );
       will-change: transform;
-      transition: transform .1s
+    }
+
+    .rotate-right {
+      transform: rotate( var(--rot) );
+      will-change: transform;
+    }
+
+    .rotate-left {
+      transform: rotate( var(--rot2) );
+      will-change: transform;
     }
   </style>
 
 </head>
 <body>
 
-<section>
-  <div class="scroll-opacity" data--o="0.2 to 1">
-    Animating OPACITY <br>
-    <img src="https://picsum.photos/400/300?image=980">
+<section class="fade-demo">
+  <div class="fade-in">
+    Increasing opacity, makes FADE IN animation <br>
+    <img src="https://picsum.photos/400/300?image=1050">
   </div>
-  
-  <div class="scroll-speed" data--ty="0 to -100px">
-    Animating TRANSLATE Y, makes it seems faster <br>
-    <img src="https://picsum.photos/400/300?image=1015">
+
+  <div class="fade-out">
+    Decreasing opacity, makes FADE OUT animation <br>
+    <img src="https://picsum.photos/400/300?image=980">
   </div>
 </section>
 
-<section>
-  <div class="scroll-rotate" data--r="0 to 180deg">
-    Rotating 180 degree <br>
+<section class="speed-demo">
+  <div class="faster">
+    Negative translateY, makes it FASTER <br>
+    <img src="https://picsum.photos/400/300?image=1015">
+  </div>
+  <div>
+    Normal Speed <br>
+    <img src="https://picsum.photos/400/300?image=973">
+  </div>
+  <div class="slower">
+    Positive translateY, makes it SLOWER <br>
+    <img src="https://picsum.photos/400/300?image=984">
+  </div>
+</section>
+
+<section class="rotate-demo">
+  <div class="rotate-left">
+    Rotating 180 degree to left <br>
     <img src="https://picsum.photos/400/300?image=1039">
+  </div>
+  <div class="rotate-right">
+    Rotating 180 degree to right<br>
+    <img src="https://picsum.photos/400/300?image=961">
   </div>
 </section>
 
@@ -73,9 +104,20 @@
 <script>
 $(document).ready( function() {
 
-  $('.scroll-opacity').hScroll();
-  $('.scroll-speed').hScroll();
-  $('.scroll-rotate').hScroll();
+  $('.fade-demo').hScroll({
+    '--o': { from: 0.2, to: 1 },
+    '--o2': { from: 1, to: .2 }
+  });
+
+  $('.speed-demo').hScroll({
+    '--ty': { from: 0, to: '-100px' },
+    '--ty2': { from: 0, to: '100px' }
+  })
+
+  $('.rotate-demo').hScroll({
+    '--rot': { from: 0, to: '180deg' },
+    '--rot2': { from: 0, to: '-180deg' }
+  });
 
 });
 </script>

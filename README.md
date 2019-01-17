@@ -9,7 +9,6 @@ A Simple Parallax scrolling using CSS variables. Only 3.6 KB gzipped.
 - [Demos](#demos)
 - [Setup](#setup)
 - [Options](#options)
-- [Options in Attribute](#options-in-attribute)
 - [Animation Timing](#animation-timing)
 - [Tips](#tips)
 - [Requirements](#requirements)
@@ -85,26 +84,9 @@ Available options for hScroll are:
 	If you inspect the element of the Demo, you will see that the variable changes is applied on `<body>`. This is intentional so you can reuse that variable when needed.
 
 
-## Options in Attribute
-
-You can specify the CSS variable by using data attribute with double dash `--`.
-
-```html
-<div class="my-elem" data--rotate="0 to 180deg">
-  <img src="...">
-</div>
-```
-
-By doing so, you don't need to pass on the arguments:
-
-```js
-$('.my-elem').hScroll();
-```
-
-
 ## Animation Timing
 
-The default animation timing is **linear**. So if the CSS value is `0 to 100px` and we already scrolled 30% from the starting position, our variable is now `30px`.
+The default animation timing is **linear**. So if the CSS value is `0` to `100px` and we already scrolled 30% from the starting position, our variable is now `30px`.
 
 By providing `timing` argument, we can modify the speed to suit your needs.
 
@@ -117,7 +99,7 @@ $('.my-elem').hScroll({
 Or add it as data attribute. But it will be applied to all CSS variables.
 
 ```html
-<div class="my-elem" data--rotate="0 to 180deg" data-timing="elasticInOut">
+<div class="my-elem" data-timing="elasticInOut">
   <img src="...">
 </div>
 ```
