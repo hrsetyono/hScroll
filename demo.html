@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- WEBSITE DETAIL -->
+  <title>hScroll Demo</title>
+  <meta name="theme-color" content="#00aadc">
+  <meta name="description" content="A Simple Parallax scrolling using CSS variables. Only 3.6 KB gzipped.">
+
+  <!-- STYLESHEET -->
+  <link rel="stylesheet" href="https://cdn.setyono.net/edje/h-normalize.css">
+
+  <style>
+    section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    section:nth-child(1) { height: 200vh; }
+    section:nth-child(n+2) { height: 100vh; }
+
+    .scroll-opacity {
+      opacity: var(--o);
+      will-change: opacity;
+      transition: transform .1s
+    }
+
+    .scroll-speed {
+      transform: translateY( var(--ty) );
+      will-change: transform;
+      transition: transform .1s
+    }
+
+    .scroll-rotate {
+      transform: rotate( var(--r) );
+      will-change: transform;
+      transition: transform .1s
+    }
+  </style>
+
+</head>
+<body>
+
+<section>
+  <div class="scroll-opacity" data--o="0.2 to 1">
+    Animating OPACITY <br>
+    <img src="https://picsum.photos/400/300?image=980">
+  </div>
+  
+  <div class="scroll-speed" data--ty="0 to -100px">
+    Animating TRANSLATE Y, makes it seems faster <br>
+    <img src="https://picsum.photos/400/300?image=1015">
+  </div>
+</section>
+
+<section>
+  <div class="scroll-rotate" data--r="0 to 180deg">
+    Rotating 180 degree <br>
+    <img src="https://picsum.photos/400/300?image=1039">
+  </div>
+</section>
+
+<section></section>
+
+
+<!-- JAVASCRIPT LIBRARY -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="src/h-scroll.js"></script>
+<script>
+$(document).ready( function() {
+
+  $('.scroll-opacity').hScroll();
+  $('.scroll-speed').hScroll();
+  $('.scroll-rotate').hScroll();
+
+});
+</script>
+
+</body>
+</html>
