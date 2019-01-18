@@ -31,7 +31,7 @@ jQuery.fn.extend( { hScroll: function( args ) {
   }
 
   /*
-    Get arguments that key started with "--".
+    Get arguments that has key started with "--".
     @param _args (array) - User-provided arguments
     @param target (Node) - The element we want to apply scroll effect to
 
@@ -39,61 +39,16 @@ jQuery.fn.extend( { hScroll: function( args ) {
   */
   function filterProps( target ) {
     var props = {};
-
-    var propAtts = getPropFromAtts( target );
-    var propArgs = getPropFromArgs( target, args );
-
-    // return combined props
-    return Object.assign( propAtts, propArgs );
-  }
-
-  /*
-    Get props from attribute that starts with "data--"
-
-    @param target (Node) - The element to apply scroll effect to
-    @return props (array) - Array for basicScroll "props" argument
-  */
-  function getPropFromAtts( target ) {
-    var timing = target.getAttribute( 'data-timing' ) || 'linear';
-     
-    var propAtts = {};
-    var dataset = target.dataset;
-    for( var d in dataset ) {
-      if( !dataset.hasOwnProperty( d ) ) { break; }
-
-      // if the first leter is capital
-      // NOTE: for unknown reason, "data--myvar" become "Myvar" when taken using dataset()
-      if( d.match(/^[A-Z]/) ) {
-        var key = '--' + d.toLowerCase();
-        var value = dataset[d].split(' to ');
-
-        propAtts[ key ] = {
-          from: value[0],
-          to: value[1],
-          timing: timing
-        };
-      }
-    }
-
-    return propAtts;        
-  }
-
-  /*
-    Get props from argument that starts with '--'
-
-    @param target (Node) - The element to apply scroll effect to
-    @param _args (array) - The current argument
-    @return props (array) - Array for basicScroll "props" argument
-  */
-  function getPropFromArgs( target, _args ) {
     var timing = target.getAttribute( 'data-timing' ) || 'linear';
 
-    var propKeys = Object.keys( _args ).filter( (key) => {
+    // Filtering for args that start with double dash '--'
+    var propKeys = Object.keys( args ).filter( (key) => {
       return key.match(/^--/);
     });
 
+    // Assign value to the filtered key
     return propKeys.reduce( (result, key) => {
-      result[ key ] = _args[ key ];
+      result[ key ] = args[ key ];
 
       // if timing is not provided, use the [data-timing]
       if( !result[ key ].timing ) {

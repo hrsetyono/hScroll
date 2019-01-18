@@ -14,43 +14,38 @@
   <link rel="stylesheet" href="https://cdn.setyono.net/edje/h-normalize.css">
 
   <style>
+    /* The animated properties */
+    .fade-in { opacity: var(--o); }
+    .fade-out { opacity: var(--o2); }
+
+    .faster { transform: translateY( var(--ty) ); }
+    .slower { transform: translateY( var(--ty2) ); }
+
+    .rotate-right { transform: rotate( var(--rot) ); }
+    .rotate-left { transform: rotate( var(--rot2) ); }
+
+    /*---*/
+
     section {
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    section:nth-child(1) { height: 200vh; }
-    section:nth-child(n+2) { height: 100vh; }
+    .fade-demo { height: 200vh; }
+    .speed-demo,
+    .rotate-demo { height: 100vh; }
 
-    .fade-in {
-      opacity: var(--o);
-      will-change: opacity;
-    }
+    .fade-in,
+    .fade-out { will-change: opacity; }
 
-    .fade-out {
-      opacity: var(--o2);
-      will-change: opacity;
-    }
+    .faster,
+    .slower,
+    .rotate-right,
+    .rotate-left { will-change: transform; }
 
-    .faster {
-      transform: translateY( var(--ty) );
-      will-change: transform;
-    }
-
-    .slower {
-      transform: translateY( var(--ty2) );
-      will-change: transform;
-    }
-
-    .rotate-right {
-      transform: rotate( var(--rot) );
-      will-change: transform;
-    }
-
-    .rotate-left {
-      transform: rotate( var(--rot2) );
-      will-change: transform;
+    .speed-demo section {
+      background-color: rgba(0, 0, 0, .05);
     }
   </style>
 
@@ -69,20 +64,16 @@
   </div>
 </section>
 
-<section class="speed-demo">
+<article class="speed-demo"> <section>
   <div class="faster">
     Negative translateY, makes it FASTER <br>
     <img src="https://picsum.photos/400/300?image=1015">
-  </div>
-  <div>
-    Normal Speed <br>
-    <img src="https://picsum.photos/400/300?image=973">
   </div>
   <div class="slower">
     Positive translateY, makes it SLOWER <br>
     <img src="https://picsum.photos/400/300?image=984">
   </div>
-</section>
+</section> </article>
 
 <section class="rotate-demo">
   <div class="rotate-left">

@@ -15,9 +15,9 @@ A Simple Parallax scrolling using CSS variables. Only 3.6 KB gzipped.
 
 ## Demos
 
-- [Basic Usage](https://codepen.io/hrsetyono/pen/MZRRqe)
-- [Parallax Banner](https://codepen.io/hrsetyono/pen/EGzYBr)
-- [More Demos from basicSlider](https://github.com/electerious/basicScroll#demos)
+1. [Basic Implementation](https://codepen.io/hrsetyono/pen/MZRRqe)
+1. [Parallax Banner](https://codepen.io/hrsetyono/pen/EGzYBr)
+1. [More Demos from basicSlider](https://github.com/electerious/basicScroll#demos)
 
 
 ## Setup
@@ -41,7 +41,6 @@ A Simple Parallax scrolling using CSS variables. Only 3.6 KB gzipped.
 	.my-elem {
 	  transform: rotate( var(--rotate) );
 	  will-change: transform;
-	  transition: transform .1 ease-in-out;
 	}
 	```
 
@@ -118,15 +117,22 @@ Possible timing:
 | quartInOut | quartIn | quartOut |
 | quintInOut | quintIn | quintOut |
 | sineInOut | sineIn | sineOut |
-| linear | | |	
+| linear | | |
+
+It's hard to explain those timing. Experiment with them to understand the differences.
 
 
 ## Tips
 
-- hScroll applies all [props](#props) globally by default. Try to reuse variables across elements instead of creating more instances.
+- By default, hScroll applies all CSS variables to `<body>`. Which mean you can reuse it across elements instead of creating more instances.
+
+- The element that you apply `hScroll()` doesn't have to be the animated element.
+
+	It can be the wrapper if that's your indicator on when to start/stop the animation. Example is my [Parallax Demo]((https://codepen.io/hrsetyono/pen/EGzYBr)).
+
 - Only animate `transform` and `opacity` and use `will-change` to [hint browsers about the kind of changes](https://developer.mozilla.org/de/docs/Web/CSS/will-change). This way the browser can setup appropriate optimizations ahead of time before the element is actually changed.
+
 - Don't animate everything at once and don't animate too many properties. Browsers don't like this.
-- Smooth animations by adding a short transition to the element: `transform: translateY(var(--ty)); transition: transform .1s`.
 
 
 ## Requirements

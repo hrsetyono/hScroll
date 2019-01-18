@@ -1,3 +1,8 @@
+## 4.0.1
+
+- Removed specifying CSS variables inside Data Attribute.
+- Added Demo 2 that shows Parallax Hero.
+
 ## 4.0.0
 
 - Forked from basicScroll.
