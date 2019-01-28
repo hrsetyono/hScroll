@@ -17,10 +17,11 @@ A Simple Parallax scrolling using CSS variables. Only 3.6 KB gzipped.
 
 1. [Basic Implementation](https://codepen.io/hrsetyono/pen/MZRRqe)
 1. [Parallax Banner](https://codepen.io/hrsetyono/pen/EGzYBr)
-1. [More Demos from basicSlider](https://github.com/electerious/basicScroll#demos)
 
 
 ## Setup
+
+1. Get the JS file from `/dist` folder.
 
 1. Include the JS files before `</body>`. You can ignore the jQuery if you already added it. Also change the path to fit your project directory.
 
