@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- WEBSITE DETAIL -->
+  <title>hScroll Demo 3 - Animation Timing</title>
+  <meta name="theme-color" content="#00aadc">
+  <meta name="description" content="A simple parallax scrolling using CSS Variables. Only 4.1 KB gzipped.">
+
+  <!-- STYLESHEET -->
+  <link rel="stylesheet" href="https://cdn.setyono.net/edje/h-normalize.css">
+
+  <style>
+    /* The animated properties */
+    section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    article {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100px;
+      width: 100%;
+      font-size: 24px;
+    }
+
+    .timing-test {
+      position: relative;
+      align-items: center;
+      background-color: #E1F5FE;
+    }
+
+    .timing-test div {
+      position: relative;
+      z-index: 10;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 70px;
+      height: 50px;
+      padding: 0 0.25em ;
+      background-color: #B3E5FC;
+      border: 1px solid rgba(0,0,0, .2);
+      margin: 0 2px;
+
+      transform: translateY( var(--tr-y) );
+      border-radius: 2px;
+
+      transition: all .1s ease-in-out;
+    }
+
+    .timing-test--red { background-color: #FCE4EC; }
+    .timing-test--red div { background-color:#F48FB1; }
+
+    .timing-test--green { background-color: #E8F5E9; }
+    .timing-test--green div { background-color: #A5D6A7; }
+
+    .timing-test div::after {
+      content: attr(data-timing);
+      font-size: 12px;
+    }
+
+    hr {
+      position: absolute;
+      z-index: 0;
+      top: 50%;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0, .1);
+      height: 50px;
+      margin: 0;
+      transform: translateY(-50%);
+    }
+
+  </style>
+
+</head>
+<body>
+
+<section class="timing-test">
+  <div data-timing="linear"></div>
+  <div data-timing="backIn"></div>
+  <div data-timing="bounceIn"></div>
+  <div data-timing="circIn"></div>
+  <div data-timing="cubicIn"></div>
+  <div data-timing="elasticIn"></div>
+  <div data-timing="expoIn"></div>
+  <div data-timing="quadIn"></div>
+  <div data-timing="quartIn"></div>
+  <div data-timing="quintIn"></div>
+  <div data-timing="sineIn"></div>
+  <hr>
+</section>
+
+<section class="timing-test">
+  <hr>
+</section>
+
+<section class="timing-test timing-test--red">
+  <div data-timing="linear"></div>
+  <div data-timing="backOut"></div>
+  <div data-timing="bounceOut"></div>
+  <div data-timing="circOut"></div>
+  <div data-timing="cubicOut"></div>
+  <div data-timing="elasticOut"></div>
+  <div data-timing="expoOut"></div>
+  <div data-timing="quadOut"></div>
+  <div data-timing="quartOut"></div>
+  <div data-timing="quintOut"></div>
+  <div data-timing="sineOut"></div>
+  <hr>
+</section>
+<section class="timing-test timing-test--red">
+  <hr>
+</section>
+
+<section class="timing-test timing-test--green">
+  <div data-timing="linear"></div>
+  <div data-timing="backInOut"></div>
+  <div data-timing="bounceInOut"></div>
+  <div data-timing="circInOut"></div>
+  <div data-timing="cubicInOut"></div>
+  <div data-timing="elasticInOut"></div>
+  <div data-timing="expoInOut"></div>
+  <div data-timing="quadInOut"></div>
+  <div data-timing="quartInOut"></div>
+  <div data-timing="quintInOut"></div>
+  <div data-timing="sineInOut"></div>
+  <hr>
+</section>
+<section class="timing-test timing-test--green">
+  <hr>
+</section>
+
+<section>
+  <h1>...</h1>
+</section>
+<section>
+  <h2>
+    <a href="/index.html">See Demo 1 - Basic Usage</a>
+  </h2>
+  <br>
+</section>
+
+<!-- JAVASCRIPT LIBRARY -->
+<script src="src/h-scroll.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  let targets = document.querySelectorAll( '.timing-test div' );
+  
+  for( let t of targets ) {
+    let timing = t.dataset.timing;
+
+    hScroll( t, {
+      from: 'middle-middle',
+      to: 'bottom-top',
+      direct: true,
+      '--tr-y': '0 to 100vh ' + timing
+    } );
+  }
+
+});
+</script>
+
+</body>
+</html>

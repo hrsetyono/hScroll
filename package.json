@@ -1,12 +1,12 @@
 {
   "name": "hscroll",
   "moduleName": "hScroll",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "authors": [
     "Tobias Reich <tobias@electerious.com>",
     "Henner Setyono <henner@setyono.net>"
   ],
-  "description": "A Simple Parallax scrolling using CSS variables. Only 3.6 KB gzipped.",
+  "description": "A simple parallax scrolling using CSS Variables. Only 4.1 KB gzipped.",
   "main": "dist/hScroll.min.js",
   "keywords": [
     "parallax",

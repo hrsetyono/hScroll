@@ -1,3 +1,8 @@
+## 4.1.0
+
+- Removed jQuery dependencies.
+- Changed the props format from object `{ from: A, to: B }` to string `"A to B"`.
+
 ## 4.0.1
 
 - Removed specifying CSS variables inside Data Attribute.

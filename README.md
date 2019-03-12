@@ -1,107 +1,96 @@
 # hScroll
 
-A Simple Parallax scrolling using CSS variables. Only 3.6 KB gzipped.
+A simple parallax scrolling using CSS variables. Only 3.6 KB gzipped.
 
-> This is a jQuery wrapper for [basicScroll](https://github.com/electerious/basicScroll) with simpler implementation.
+**TABLE OF CONTENTS**
 
-## Contents
-
-- [Demos](#demos)
-- [Setup](#setup)
-- [Options](#options)
+- [Demo](#demo)
+- [Features](#features)
+- [Function & Parameters](#function--parameters)
+- [Example](#example)
 - [Animation Timing](#animation-timing)
 - [Tips](#tips)
 - [Requirements](#requirements)
+- [Credit](#credit)
 
-## Demos
+## Demo
 
-1. [Basic Implementation](https://codepen.io/hrsetyono/pen/MZRRqe)
-1. [Parallax Banner](https://codepen.io/hrsetyono/pen/EGzYBr)
+| Name | Link |
+| --- | --- |
+| Basic Implementation | [View in Codepen](https://codepen.io/hrsetyono/pen/MZRRqe) |
+| Parallax Banner | [View in Codepen](https://codepen.io/hrsetyono/pen/EGzYBr) |
 
+## Features
 
-## Setup
+- **Smooth Performance** - We only modify CSS Variable as you scroll.
+- **Lightweight** - Our script is only 3.6 KB gzipped.
+- **No dependencies** - Just plain old JS.
 
-1. Get the JS file from `/dist` folder.
+## Function & Parameters
 
-1. Include the JS files before `</body>`. You can ignore the jQuery if you already added it. Also change the path to fit your project directory.
+```
+hScroll( targets, args )
+```
 
-	```html
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="js/h-scroll.min.js"></script>
-	```
+`targets` (Node / NodeList) - Element used as threshold on when to start/stop animating
 
-1. Create an element and set CSS variable in the property that you want to animate.
+`args` (obj) - Possible arguments are:
 
-	```html
-	<div class="my-elem">
-	  <img src="...">
-	</div>
-	```
+- **from** (string) - When to start animating. Default: middle-bottom.
 
-	```css
-	.my-elem {
-	  transform: rotate( var(--rotate) );
-	  will-change: transform;
-	}
-	```
+  The value `middle-bottom` means: When the middle of the element reaches the bottom viewport, start animating.
 
-1. Apply hScroll to the element. Then set the starting and finishing value for the CSS variable.
+  You can mix-match these 3 keywords: `middle`, `top`, and `bottom`. For example `top-bottom` means start animating as soon as the element enters the viewport.
+	
+- **to** (string) - When to stop animating. Default: middle-top.
 
-	```js
-	$(document).ready( function() {
+- **direct** (bool) - If true, CSS changes is applied to the element. If false, applied to `<body>`. Default: false.
 
-	  $('.my-elem').hScroll({	
-	    '--rotate': { from: 0, to: '180deg' }
-	  });
-		
-	});
-	```
-
-1. **Done!** As simple as that.
+- **--var-name** (string) - Set starting and ending value for the variable. Format: `A to B`.
 
 
-## Options
+## Example
 
-Available options for hScroll are:
+You have an image that you want to add "Fade in" animation:
 
-1. **from** - When to start animating. Default: middle-bottom.
-1. **to** - When to stop animating. Default: middle-top.
+```html
+<div class="my-image">
+  <img src="...">
+</div>
+```
 
-	```js
-	$('.my-elem').hScroll({
-	  from: 'middle-bottom',
-	  to: 'middle-top',
-	  '--rotate': { from: 0, to: '180deg' }
-	});
-	```
+Use CSS Variable to set the properties you want to animate.
 
-	The value consists of 2 parts: First is the element, Second is the viewport. So `middle-bottom` means: When the middle of the element reached the bottom viewport.
+```css
+.my-image {
+  opacity: var( --opacity )
+  transform: translateY( var( --tr-y ) );
+}
+```
 
-	Possible values for both parts are: `top`, `middle`, and `bottom`.
+Finally, use hScroll to animate that CSS variable.
 
-1. **direct** - If true, apply the variable to the element directly. If false, applied to `<body>`. Default: false.
+```js
+document.addEventListener('DOMContentLoaded', () => {
 
-	If you inspect the element of the Demo, you will see that the variable changes is applied on `<body>`. This is intentional so you can reuse that variable when needed.
+  hScroll( document.querySelector('.my-image'), {
+    '--opacity': '0 to 1',
+    '--tr-y': '50px to 0'
+  } );
 
+} );
+```
 
 ## Animation Timing
 
-The default animation timing is **linear**. So if the CSS value is `0` to `100px` and we already scrolled 30% from the starting position, our variable is now `30px`.
+The default animation timing is **linear**. So if the CSS value is `0 to 100px` and we already scrolled 30% from the starting position, our variable is now `30px`.
 
-By providing `timing` argument, we can modify the speed to suit your needs.
+You can add custom timing by appending the value like below:
 
 ```js
-$('.my-elem').hScroll({
-  '--rotate': { from: 0, to: '180deg', timing: 'elasticInOut' }
+hScroll( document.querySelector('.my-elem'), {
+  '--opacity': '0 to 1 elasticInOut',
 });
-```
-
-Or add it as data attribute. But it will be applied to all CSS variables.
-
-```html
-<div class="my-elem" data-timing="elasticInOut">
-  <img src="...">
-</div>
 ```
 
 Possible timing:
@@ -120,25 +109,19 @@ Possible timing:
 | sineInOut | sineIn | sineOut |
 | linear | | |
 
-It's hard to explain those timing. Experiment with them to understand the differences.
-
+You can open `index3.html` from this repo to see the difference in speed.
 
 ## Tips
 
-- By default, hScroll applies all CSS variables to `<body>`. Which mean you can reuse it across elements instead of creating more instances.
+- By default, hScroll applies changes to `<body>`. Which mean you can reuse it across elements instead of creating more instances.
 
-- The element that you apply `hScroll()` doesn't have to be the animated element.
-
-	It can be the wrapper if that's your indicator on when to start/stop the animation. Example is my [Parallax Demo]((https://codepen.io/hrsetyono/pen/EGzYBr)).
-
-- Only animate `transform` and `opacity` and use `will-change` to [hint browsers about the kind of changes](https://developer.mozilla.org/de/docs/Web/CSS/will-change). This way the browser can setup appropriate optimizations ahead of time before the element is actually changed.
+- Only animate `transform` and `opacity` property.
 
 - Don't animate everything at once and don't animate too many properties. Browsers don't like this.
 
+----
 
-## Requirements
-
-hScroll depends on **jQuery**. Tested working on version 1.12.4.
+### Requirements
 
 hScroll also depends on the following browser features and APIs:
 
@@ -147,3 +130,7 @@ hScroll also depends on the following browser features and APIs:
 - [requestAnimationFrame](https://www.w3.org/TR/animation-timing/#dom-windowanimationtiming-requestanimationframe)
 
 Some of these APIs are capable of being polyfilled in older browsers. Check the linked resources above to determine if you must polyfill to achieve your desired level of browser support.
+
+### Credit
+
+This is a fork of [basicScroll](https://github.com/electerious/basicScroll) with simpler implementation. So big thanks to [Tobias Reich](https://github.com/electerious) for creating an awesome basis for this library.

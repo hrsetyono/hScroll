@@ -8,7 +8,7 @@
   <!-- WEBSITE DETAIL -->
   <title>hScroll Demo 2 - Parallax Banner</title>
   <meta name="theme-color" content="#00aadc">
-  <meta name="description" content="A Simple Parallax scrolling using CSS variables. Only 3.6 KB gzipped.">
+  <meta name="description" content="A simple parallax scrolling using CSS Variables. Only 4.1 KB gzipped.">
 
   <!-- STYLESHEET -->
   <link rel="stylesheet" href="https://cdn.setyono.net/edje/h-normalize.css">
@@ -141,43 +141,45 @@
   </article>
 </section>
 
-<section class="empty"><article><h1>...</h1></article></section>
+<section class="empty">
+  <h1><a href="index3.html">See Demo 3 - Timing Function</a></h1>
+</section>
 <section class="empty"><article><h1>...</h1></article></section>
 
 
 <!-- JAVASCRIPT LIBRARY -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="src/h-scroll.js"></script>
 <script>
-$(document).ready( function() {
+document.addEventListener('DOMContentLoaded', () => {
+  
   // Basic hero banner parallax effect
-  $('.banner figure').hScroll({
+  hScroll( document.querySelector('.banner figure'), {
     from: 'top-top',
     to: 'bottom-top',
-    '--ty': { from: '0', to: '200px' },
+    '--ty': '0 to 200px',
   });
 
   // Direct scroll effect, variable is applied on element instead of <body>
-  var galleryArgs = {
+  let galleryArgs = {
     from: 'middle-bottom',
     to: 'middle-middle',
     direct: true,
-    '--og': { from: '0.2', to: '1' },
-    '--rg': { from: '-15deg', to: '0' },
+    '--og': '0.2 to 1',
+    '--rg': '-15deg to 0',
   };
 
-  $('.gallery img:nth-child(odd)').hScroll( galleryArgs );
+  hScroll( document.querySelectorAll('.gallery img:nth-child(odd)'),  galleryArgs );
 
-  galleryArgs['--rg'] = { from: '15deg', to: '0' };
-  $('.gallery img:nth-child(even)').hScroll( galleryArgs );
+  galleryArgs['--rg'] = '15deg to 0';
+  hScroll( document.querySelectorAll('.gallery img:nth-child(even)'),  galleryArgs );
   
 
   // A simple text animation
-  $('.banner-gradient').hScroll({
+  hScroll( document.querySelector('.banner-gradient'), {
     from: 'middle-middle',
     to: 'middle-top',
-    '--ty2': { from: '0', to: '100px' },
-    '--o': { from: '1', to: '0' },
+    '--ty2': '0 to 100px',
+    '--o': '1 to 0',
   });
 
 });

@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- WEBSITE DETAIL -->
-  <title>hScroll Demo</title>
+  <title>hScroll Demo 1</title>
   <meta name="theme-color" content="#00aadc">
-  <meta name="description" content="A Simple Parallax scrolling using CSS variables. Only 3.6 KB gzipped.">
+  <meta name="description" content="A simple parallax scrolling using CSS Variables. Only 4.1 KB gzipped.">
 
   <!-- STYLESHEET -->
   <link rel="stylesheet" href="https://cdn.setyono.net/edje/h-normalize.css">
@@ -47,6 +47,9 @@
     .speed-demo section {
       background-color: rgba(0, 0, 0, .05);
     }
+
+    .empty { height: 50vh; }
+    .empty h1 { color: #777; }
   </style>
 
 </head>
@@ -86,28 +89,29 @@
   </div>
 </section>
 
-<section></section>
+<section class="empty"><article>
+  <h1><a href="index2.html">See Demo 2</a></h1>
+</article></section>
 
 
 <!-- JAVASCRIPT LIBRARY -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="src/h-scroll.js"></script>
 <script>
-$(document).ready( function() {
+document.addEventListener('DOMContentLoaded', () => {
 
-  $('.fade-demo').hScroll({
-    '--o': { from: 0.2, to: 1 },
-    '--o2': { from: 1, to: .2 }
+  hScroll( document.querySelector('.fade-demo'), {
+    '--o': '0.2 to 1 elasticInOut',
+    '--o2': '1 to 0.2'
   });
 
-  $('.speed-demo').hScroll({
-    '--ty': { from: 0, to: '-100px' },
-    '--ty2': { from: 0, to: '100px' }
+  hScroll( document.querySelector('.speed-demo'), {
+    '--ty': '0 to -100px',
+    '--ty2': '0 to 100px'
   })
 
-  $('.rotate-demo').hScroll({
-    '--rot': { from: 0, to: '180deg' },
-    '--rot2': { from: 0, to: '-180deg' }
+  hScroll( document.querySelector('.rotate-demo'), {
+    '--rot': '0 to 180deg',
+    '--rot2': '0 to -180deg'
   });
 
 });
