@@ -38,9 +38,7 @@ hScroll( targets, args )
 
 - **from** (string) - When to start animating. Default: middle-bottom.
 
-  The value `middle-bottom` means: When the middle of the element reaches the bottom viewport, start animating.
-
-  You can mix-match these 3 keywords: `middle`, `top`, and `bottom`. For example `top-bottom` means start animating as soon as the element enters the viewport.
+  The value `middle-bottom` means: Start aniating when the middle of the element reaches the bottom viewport. You can mix-match these 3 keywords: `middle`, `top`, and `bottom`.
 	
 - **to** (string) - When to stop animating. Default: middle-top.
 
@@ -59,7 +57,7 @@ You have an image that you want to add "Fade in" animation:
 </div>
 ```
 
-Use CSS Variable to set the properties you want to animate.
+Set CSS Variables into your property:
 
 ```css
 .my-image {
@@ -68,12 +66,14 @@ Use CSS Variable to set the properties you want to animate.
 }
 ```
 
-Finally, use hScroll to animate that CSS variable.
+Finally, use hScroll to animate that CSS Variables.
 
 ```js
 document.addEventListener('DOMContentLoaded', () => {
 
   hScroll( document.querySelector('.my-image'), {
+    'from': 'top-bottom',
+    'to': 'bottom-top'
     '--opacity': '0 to 1',
     '--tr-y': '50px to 0'
   } );
@@ -81,9 +81,13 @@ document.addEventListener('DOMContentLoaded', () => {
 } );
 ```
 
+The value `top-bottom` in `from` argument means: Start animating when the **top** of the element reaches **bottom** viewport.
+
+The value `bottom-top` in `to` argument means: Stop animating when the **bottom** of the element reaches **top** viewport.
+
 ## Animation Timing
 
-The default animation timing is **linear**. So if the CSS value is `0 to 100px` and we already scrolled 30% from the starting position, our variable is now `30px`.
+The default animation timing is **linear**. So if the prop value is `0 to 100px` and we already scrolled 30% from the starting position, our variable is now `30px`.
 
 You can add custom timing by appending the value like below:
 
