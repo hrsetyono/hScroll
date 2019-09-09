@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   hScroll( document.querySelector('.my-image'), {
     'from': 'top-bottom',
-    'to': 'bottom-top'
+    'to': 'bottom-top',
     '--opacity': '0 to 1',
     '--tr-y': '50px to 0'
   } );
