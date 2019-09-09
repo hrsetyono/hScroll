@@ -36,11 +36,13 @@ hScroll( targets, args )
 
 `args` (obj) - Possible arguments are:
 
-- **from** (string) - When to start animating. Default: middle-bottom.
+- **from** (string) - When to start animating. Default: `middle-bottom`.
 
-  The value `middle-bottom` means: Start aniating when the middle of the element reaches the bottom viewport. You can mix-match these 3 keywords: `middle`, `top`, and `bottom`.
+  The value `middle-bottom` means: Start animating when the middle of the element reaches the bottom viewport. You can mix-match these 3 keywords: `middle`, `top`, and `bottom`.
 	
-- **to** (string) - When to stop animating. Default: middle-top.
+- **to** (string) - When to stop animating. Default: `middle-top`.
+
+  Same keywords as **from** argument.
 
 - **direct** (bool) - If true, CSS changes is applied to the element. If false, applied to `<body>`. Default: false.
 
@@ -81,9 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
 } );
 ```
 
-The value `top-bottom` in `from` argument means: Start animating when the **top** of the element reaches **bottom** viewport.
+- The value `top-bottom` in `from` argument means: Start animating when the **top** of the element reaches **bottom** viewport.
 
-The value `bottom-top` in `to` argument means: Stop animating when the **bottom** of the element reaches **top** viewport.
+- The value `bottom-top` in `to` argument means: Stop animating when the **bottom** of the element reaches **top** viewport.
 
 ## Animation Timing
 
